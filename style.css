@@ -1,0 +1,26 @@
+.container{
+    width: 80%;
+    border:1px solid black;
+    margin: 0px auto;
+}
+header{
+    width: 100%;
+    border:1px solid black;
+    text-align: center;
+    margin-top: 1em;
+}
+.contact{
+    width: 100%;
+    border:1px solid black;
+    padding: 1em;
+    
+}
+.logo{
+    width: 30%;
+    margin:0px auto;
+    border:1px solid red;
+    text-align: center;
+}
+.logo img{
+    width: 50%;
+}
