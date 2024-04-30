@@ -68,3 +68,9 @@ border:1px solid black;
 #letter1:hover #eerste{
     fill: red;
 }
+#textInfo{
+    max-height: 20em;
+}
+.checkboxZoek{
+    margin-left: 2em;
+}

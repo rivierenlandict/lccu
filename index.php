@@ -15,35 +15,35 @@
    
     <div class="content">
     <h4> Politiedienst: <b> PZ Rivierenland</b></h4>
-    <form>
+    <form method="post">
     <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputTeam">Team <span class="verplicht"> * </span></label>
-      <input type="email" class="form-control" id="inputTeam" placeholder="Geef u team in...">
+      <input type="text" name="txtTeam" class="form-control" id="inputTeam" placeholder="Geef u team in...">
     </div>
     <div class="form-group col-md-6">
       <label for="inputDossier">Dossierbeheerder <span class="verplicht"> * </span></label>
-      <input type="password" class="form-control" id="inputDossier" placeholder="Geef de dossierbeheerder in...">
+      <input type="text" name="txtDossierbeheerder" class="form-control" id="inputDossier" placeholder="Geef de dossierbeheerder in...">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPV">Aanvankelijk PV nummer</label>
-      <input type="text" class="form-control" id="inputPV" placeholder="Geef aanvankelijk PV nummer in...">
+      <input type="text" name="txtPv" class="form-control" id="inputPV" placeholder="Geef aanvankelijk PV nummer in...">
     </div>
     <div class="form-group col-md-6">
       <label for="inputMisdrijf">Misdrijf</label>
-      <input type="text" class="form-control" id="inputMisdrijf" placeholder="Geef het misdrijf in...">
+      <input type="text" name="txtMisdrijf" class="form-control" id="inputMisdrijf" placeholder="Geef het misdrijf in...">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputMisdrijf">Naam OR/PdK <span class="verplicht"> * </span></label>
-      <input type="text" class="form-control" id="inputMisdrijf" placeholder="Geef het misdrijf in...">
+      <label for="inputOr">Naam OR/PdK <span class="verplicht"> * </span></label>
+      <input type="text" name="txtOr" class="form-control" id="inputOr" placeholder="Geef de naam van de OR/PDK in...">
     </div>
     <div class="form-group col-md-6">
       <label for="inputDatum">Datum in beslagname <span class="verplicht"> * </span></label>
-      <input type="date" class="form-control" id="inputDatum">
+      <input type="date" name="txtDatum" class="form-control" id="inputDatum">
     </div>
     <div class="form-group col-md-6">
     <label for="inputDossiernaam">Dossiernaam <span class="verplicht"> * </span></label>
-    <input type="text" class="form-control" id="inputDossiernaam" placeholder="Dossiernaam (GES) of naam hoofdverdachte">
+    <input type="text" class="form-control" name="txtDossiernaam" id="inputDossiernaam" placeholder="Dossiernaam (GES) of naam hoofdverdachte">
     </div>
     <div class="form-group col-md-6">
       <p class="txtLccu"> <b>LCCU - </b> #number# <b> ID - </b> #Id#</p>
@@ -54,53 +54,53 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNaam">Naam <span class="verplicht"> * </span></label>
-      <input type="text" class="form-control" id="inputNaam" placeholder="Geef de naam van de eigenaar van het toestel...">
+      <input type="text" name="txtNaam" class="form-control" id="inputNaam" placeholder="Geef de naam van de eigenaar van het toestel...">
     </div>
     <div class="form-group col-md-6">
       <label for="inputVoornaam">Voornaam <span class="verplicht"> * </span></label>
-      <input type="text" class="form-control" id="inputVoornaam" placeholder="Geef de voornaam van de eigenaar van het toestel...">
+      <input type="text" name="txtVoornaam" class="form-control" id="inputVoornaam" placeholder="Geef de voornaam van de eigenaar van het toestel...">
     </div>
     <div class="form-group col-md-6">
       <label for="inputGeboortedatum">Geboortedatum <span class="verplicht"> * </span></label>
-      <input type="date" class="form-control" id="inputGeboortedatum">
+      <input type="date" name="txtGeboortedatum" class="form-control" id="inputGeboortedatum">
     </div>
     <div class="form-group col-md-6">
       <label for="inputAdres">Adres + huisnummer</label>
-      <input type="text" class="form-control" id="inputAdres" placeholder="Geef het adres in waar de eigenaar verblijft...">
+      <input type="text" name="txtAdres" class="form-control" id="inputAdres" placeholder="Geef het adres in waar de eigenaar verblijft...">
     </div>
     <div class="form-group col-md-6">
       <label for="inputGemeente">Gemeente</label>
-      <input type="text" class="form-control" id="inputGemeente" placeholder="Geef de gemeente in waar de eigenaar verblijft... ">
+      <input type="text" name="txtGemeente" class="form-control" id="inputGemeente" placeholder="Geef de gemeente in waar de eigenaar verblijft... ">
     </div>
 <!-- Radio buttons -->
       <div class="form-group col-md-6">
         <label>Hoedanigheid <span class="verplicht"> * </span></label>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Slachtoffer">
+          <input class="form-check-input" type="radio" name="radioHoedanigheid" id="gridRadios1" value="Slachtoffer">
           <label class="form-check-label" for="gridRadios1">
             Slachtoffer
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="Getuige">
+          <input class="form-check-input" type="radio" name="radioHoedanigheid" id="gridRadios2" value="Getuige">
           <label class="form-check-label" for="gridRadios2">
             Getuige
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="Betrokkene">
+          <input class="form-check-input" type="radio" name="radioHoedanigheid" id="gridRadios3" value="Betrokkene">
           <label class="form-check-label" for="gridRadios3">
             Betrokkene
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios4" value="Verdachte">
+          <input class="form-check-input" type="radio" name="radioHoedanigheid" id="gridRadios4" value="Verdachte">
           <label class="form-check-label" for="gridRadios4">
             Verdachte
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios5" value="Onbekend">
+          <input class="form-check-input" type="radio" name="radioHoedanigheid" id="gridRadios5" value="Onbekend">
           <label class="form-check-label" for="gridRadios5">
             Onbekend
           </label>
@@ -113,19 +113,19 @@
 <div class="form-row" style="padding:1em;">
         <label>Afhandeling <span class="verplicht"> * </span>: </label>
         <div class="form-check radioPriority">
-          <input class="form-check-input" type="radio"  name="radioAfhandeling" id="radioAfhandeling1" value="3">
+          <input class="form-check-input" type="radio"  name="radioAfhandeling" id="radioAfhandeling1" value="Gewone afhandeling">
           <label class="form-check-label" for="gridRadios1">
             Gewone afhandeling
           </label>
         </div>
         <div class="form-check radioPriority">
-          <input class="form-check-input" type="radio"  name="radioAfhandeling" id="radioAfhandeling2" value="2">
+          <input class="form-check-input" type="radio"  name="radioAfhandeling" id="radioAfhandeling2" value="Dringend">
           <label class="form-check-label" for="gridRadios2">
             Dringend
           </label>
         </div>
         <div class="form-check radioPriority">
-          <input class="form-check-input" type="radio"  name="radioAfhandeling" id="radioAfhandeling3" value="1">
+          <input class="form-check-input" type="radio"  name="radioAfhandeling" id="radioAfhandeling3" value="Prioritair">
           <label class="form-check-label" for="gridRadios2">
             Prioritair
           </label>
@@ -135,7 +135,7 @@
 <div class="form-row" style="padding:1em;">
 <label>Toelating uitlezing <span class="verplicht"> * </span>: </label>
         <div class="form-check radioPriority">
-          <input class="form-check-input" type="radio"  name="radioAfhandeling" id="radioAfhandeling1" value="3">
+          <input class="form-check-input" type="radio"  name="radioToelating" id="radioAfhandeling1" value="Ja">
           <label class="form-check-label" for="gridRadios1">
             Ja
           </label>
@@ -145,17 +145,17 @@
 <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputMerk">Merk + model <span class="verplicht"> * </span></label>
-      <input type="text" class="form-control" id="inputMerk" placeholder="Geef het merk van het toestel in... ">
+      <input type="text" name="txtMerk" class="form-control" id="inputMerk" placeholder="Geef het merk van het toestel in... ">
     </div>
     <div class="form-group col-md-6">
       <label for="inputSerienummer">Serienummer/IMEInummer</label>
-      <input type="password" class="form-control" id="inputSerienummer" placeholder="Geef het serienummer van het toestel in...">
+      <input type="text" name="txtSerienummer" class="form-control" id="inputSerienummer" placeholder="Geef het serienummer van het toestel in...">
     </div>
     <div class="form-group col-md-6">
       <label for="inputToegangscode">Toegangscode</label>
-      <input type="text" class="form-control" id="inputToegangscode" placeholder="Geef de toegangscode in van het toestel...">
+      <input type="text" name="txtToegangscode" class="form-control" id="inputToegangscode" placeholder="Geef de toegangscode in van het toestel...">
     </div>
-    <div class="form-group col-md-6">
+    <!--<div class="form-group col-md-6">
         <div id="divPatroon">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketchjs="https://sketch.io/dtd/" sketchjs:metadata="eyJuYW1lIjoiRHJhd2luZy5za2V0Y2hwYWQiLCJzdXJmYWNlIjp7ImlzUGFpbnQiOnRydWUsIm1ldGhvZCI6ImZpbGwiLCJibGVuZCI6Im5vcm1hbCIsImVuYWJsZWQiOnRydWUsIm9wYWNpdHkiOjEsInR5cGUiOiJwYXR0ZXJuIiwicGF0dGVybiI6eyJ0eXBlIjoicGF0dGVybiIsInJlZmxlY3QiOiJuby1yZWZsZWN0IiwicmVwZWF0IjoicmVwZWF0Iiwic21vb3RoaW5nIjpmYWxzZSwic3JjIjoidHJhbnNwYXJlbnRMaWdodCIsInN4IjoxLCJzeSI6MSwieDAiOjAuNSwieDEiOjEsInkwIjowLjUsInkxIjoxfSwiaXNGaWxsIjp0cnVlfSwiY2xpcFBhdGgiOnsiZW5hYmxlZCI6dHJ1ZSwic3R5bGUiOnsic3Ryb2tlU3R5bGUiOiJibGFjayIsImxpbmVXaWR0aCI6MX19LCJkZXNjcmlwdGlvbiI6Ik1hZGUgd2l0aCBTa2V0Y2hwYWQiLCJtZXRhZGF0YSI6e30sImV4cG9ydERQSSI6NzIsImV4cG9ydEZvcm1hdCI6InN2ZyIsImV4cG9ydFF1YWxpdHkiOjAuOTUsInVuaXRzIjoicHgiLCJ3aWR0aCI6NTAwLCJoZWlnaHQiOjUwMCwicGFnZXMiOlt7IndpZHRoIjo1MDAsImhlaWdodCI6NTAwfV0sInV1aWQiOiJjMWM3ZGI1OC0wZWQzLTQxZjItOWRjOS0xNzIyNjQ5NTI2NjgifQ==" viewBox="-15.52 -20.55 529.35 542.35">
     <path class="circles" id="eerste" style="stroke: #000000; mix-blend-mode: source-over; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: round; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 10; vector-effect: non-scaling-stroke;" sketchjs:tool="circle" d="M111.145 0 C172.529 0 222.29 49.761 222.29 111.145 222.29 172.529 172.529 222.29 111.145 222.29 49.761 222.29 0 172.529 0 111.145 0 49.761 49.761 0 111.145 0 z" transform="matrix(0.6763093838733021,0.006763319284211991,-0.006763319284211991,0.6763093838733021,10.25245482762071,5.691146120942516)"/>
@@ -231,21 +231,115 @@
 	    </g>
     </g>
 </svg>
-        </div>
+        </div>-->
+        <div class="form-group col-md-6">
+      <label for="inputToegangscode">SINN (Pacos)</label>
+      <input type="text" name="txtSinn" class="form-control" id="inputToegangscode" placeholder="Geef de SINN nummer in...">
+    </div>
+
+ 
 <script>
-document.getElementById("eerste").addEventListener("click", function(){
+/*document.getElementById("eerste").addEventListener("click", function(){
     document.getElementById("txtPatroon").innerHTML = this.value;
 });
-
+*/
 </script>
 <p id="txtPatroon"></p>
+
     </div>
+    <div class="form-group">
+    <label for="textInfo" class="form-label">Extra informatie</label>
+  <textarea class="form-control" name="txtExtrainfo" id="textInfo" rows="3" maxlength="500"></textarea>
+    </div>
+    <div class="form-group col-md-6">
+        <label>Zoekelementen <span class="verplicht"> * </span></label>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="checkZoek[]" id="check1" value="E-mails">
+          <label class="form-check-label" for="check1">
+            E-mails
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="checkZoek[]" id="check2" value="Chat">
+          <label class="form-check-label" for="check2">
+            Chat
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="checkZoek[]" id="check3" value="Documenten">
+          <label class="form-check-label" for="check3">
+            Documenten
+          </label>
+        </div>
+        <div class="form-check">
+        <label for="name3">
+      <input class="form-check-input" type="checkbox" name="checkZoek[]" id="check4" value="andere" onclick="if(this.checked){ document.getElementById('name3').focus();}" />
+      Andere...
+    </label>
+<input type="text" id="name3" name="txtAndere" />
+        </div>
 </div>
-<button type="submit" class="btn btn-primary">Submit</button>
+
+</div>
+<button type="submit" name="btnVerzend" class="btn btn-primary">Submit</button>
 </form>
-
-
         </div>
     </div>
+
+
+<!------ BACKEND --->
+<?php
+if(isset($_POST["btnVerzend"])){
+    echo "<script> document.querySelector('.container').style.display = 'none';</script>";
+    echo "Team: ".$_POST["txtTeam"]."<br>".
+        "Dossierbeheerder: ".$_POST["txtDossierbeheerder"]."<br>".
+        "PV Nummer: ".$_POST["txtPv"]."<br>".
+        "Misdrijf: ".$_POST["txtMisdrijf"]."<br>".
+        "Naam OR/PDK: ".$_POST["txtOr"]."<br>".
+        "Datum in beslagname: ".$_POST["txtDatum"]."<br>". 
+        "Dossiernaam: ".$_POST["txtDossiernaam"]."<br><hr><br><h3> Eigenaar </h3>". 
+    
+        "Naam: ".$_POST["txtNaam"]."<br>".
+        "Voornaam: ".$_POST["txtVoornaam"]."<br>". 
+        "Geboortedatum: ".$_POST["txtGeboortedatum"]."<br>". 
+        "Adres: ".$_POST["txtAdres"]."<br>". 
+        "Gemeente: ".$_POST["txtGemeente"]."<br>". 
+        "Hoedanigheid: ".$_POST["radioHoedanigheid"]."<br><hr><br><h3> Aangeleverd materiaal </h3>". 
+
+        "Afhandeling: ".$_POST["radioAfhandeling"]."<br>". 
+        "Toelating uitlezing: ".$_POST["radioToelating"]."<br>". 
+        "Merk + model: ".$_POST["txtMerk"]."<br>". 
+        "Serienummer: ".$_POST["txtSerienummer"]."<br>". 
+        "Toegangscode: ".$_POST["txtToegangscode"]."<br>". 
+        "SINN: ".$_POST["txtSinn"]."<br>".
+        "Extra info: ".$_POST["txtExtrainfo"]."<br>". 
+        "Zoekelementen: ";
+        foreach($_POST['checkZoek'] as $item){
+            echo $item.", ";
+            // query to delete where item = $item
+          }
+        echo "<br>";
+
+
+}
+
+
+?>
+
+
+
+
+
+
+
+
+
+
 </body>
+
+
+
+
+
+
 </html>
