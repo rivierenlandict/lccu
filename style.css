@@ -74,3 +74,8 @@ border:1px solid black;
 .checkboxZoek{
     margin-left: 2em;
 }
+.error{
+     color:red;
+     font-size: 75%;
+     font-style: italic;
+}

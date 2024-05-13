@@ -1,3 +1,6 @@
+<?php
+include("connect.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +11,108 @@
     <title>Home</title>
 </head>
 <body>
+
+<?php
+  $pv = test_input($_POST["txtPv"]);
+  $misdrijf = test_input($_POST["txtMisdrijf"]);
+
+  $adres = test_input($_POST["txtAdres"]);
+  $gemeente = test_input($_POST["txtGemeente"]);
+
+  $serienummer = test_input($_POST["txtSerienummer"]);
+  $toegangscode = test_input($_POST["txtToegangscode"]);
+  $sinn = test_input($_POST["txtSinn"]);
+  $info = test_input($_POST["txtExtrainfo"]);
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+  if(empty($_POST["txtTeam"])){
+    $teamErr = "Team is verplicht";
+  }else{
+    $team = test_input($_POST["txtTeam"]);
+  }
+  
+  if(empty($_POST["txtDossierbeheerder"])){
+    $dossierErr = "Dossierbeheerder is verplicht";
+  }else{
+    $dossierbeheerder = test_input($_POST["txtDossierbeheerder"]);
+  }
+
+  if(empty($_POST["txtOr"])){
+    $orErr = "OR/PDK is verplicht";
+  }else{
+    $or = test_input($_POST["txtOr"]);
+  }
+
+  if(empty($_POST["txtDatum"])){
+    $datumErr = "Datum is verplicht";
+  }else{
+    $datum = test_input($_POST["txtDatum"]);
+  }
+
+  if(empty($_POST["txtDossiernaam"])){
+    $dossiernaamErr = "Dossiernaam is verplicht";
+  }else{
+    $dossiernaam = test_input($_POST["txtDossiernaam"]);
+  }
+
+  if(empty($_POST["txtNaam"])){
+    $naamErr = "Naam is verplicht";
+  }else{
+    $naam = test_input($_POST["txtNaam"]);
+  }
+
+  if(empty($_POST["txtVoornaam"])){
+    $voornaamErr = "Voornaam is verplicht";
+  }else{
+    $voornaam = test_input($_POST["txtVoornaam"]);
+  }
+
+  if(empty($_POST["txtGeboortedatum"])){
+    $geboorteErr = "Geboortedatum is verplicht";
+  }else{
+    $geboortedatum = test_input($_POST["txtGeboortedatum"]);
+  }
+
+  if(empty($_POST["radioHoedanigheid"])){
+    $hoedanigheidErr = "Hoedanigheid is verplicht";
+  }else{
+    $hoedanigheid = test_input($_POST["radioHoedanigheid"]);
+  }
+
+  if(empty($_POST["radioAfhandeling"])){
+    $afhandelingErr = "Afhandeling is verplicht";
+  }else{
+    $afhandeling = test_input($_POST["radioAfhandeling"]);
+  }
+
+  if(empty($_POST["radioToelating"])){
+    $toelatingErr = "Toelating is verplicht";
+  }else{
+    $toelating = test_input($_POST["radioToelating"]);
+  }
+
+  if(empty($_POST["txtMerk"])){
+    $merkErr = "Merk en model is verplicht";
+  }else{
+    $merk = test_input($_POST["txtMerk"]);
+  }
+
+
+  if(empty($_POST["checkZoek"])){
+    $zoekErr = "Tenminste 1 zoekelement is verplicht";
+  }else{
+    $teller = 0;
+    foreach($_POST['checkZoek'] as $item){
+      $zoekelement.$teller = $item;
+      $teller++;
+    }
+  }
+
+
+
+}
+
+
+?>
     <div class="container">
         <header> 
             <h1> AANVRAAG ANALYSE LCCU </h1>
@@ -15,15 +120,17 @@
    
     <div class="content">
     <h4> Politiedienst: <b> PZ Rivierenland</b></h4>
-    <form method="post">
+    <form method="post" class="needs-validation" novalidate>
     <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputTeam">Team <span class="verplicht"> * </span></label>
-      <input type="text" name="txtTeam" class="form-control" id="inputTeam" placeholder="Geef u team in...">
+      <input type="text" name="txtTeam" class="form-control" id="inputTeam" placeholder="Geef u team in..." required>
+      <span class="error"> <?php echo $teamErr;?></span>
     </div>
     <div class="form-group col-md-6">
       <label for="inputDossier">Dossierbeheerder <span class="verplicht"> * </span></label>
       <input type="text" name="txtDossierbeheerder" class="form-control" id="inputDossier" placeholder="Geef de dossierbeheerder in...">
+      <span class="error"> <?php echo $dossierErr;?></span>
     </div>
     <div class="form-group col-md-6">
       <label for="inputPV">Aanvankelijk PV nummer</label>
@@ -36,14 +143,18 @@
     <div class="form-group col-md-6">
       <label for="inputOr">Naam OR/PdK <span class="verplicht"> * </span></label>
       <input type="text" name="txtOr" class="form-control" id="inputOr" placeholder="Geef de naam van de OR/PDK in...">
+      <span class="error"> <?php echo $orErr;?></span>
+
     </div>
     <div class="form-group col-md-6">
       <label for="inputDatum">Datum in beslagname <span class="verplicht"> * </span></label>
       <input type="date" name="txtDatum" class="form-control" id="inputDatum">
+      <span class="error"> <?php echo $datumErr;?></span>
     </div>
     <div class="form-group col-md-6">
     <label for="inputDossiernaam">Dossiernaam <span class="verplicht"> * </span></label>
     <input type="text" class="form-control" name="txtDossiernaam" id="inputDossiernaam" placeholder="Dossiernaam (GES) of naam hoofdverdachte">
+    <span class="error"> <?php echo $dossiernaam;?></span>
     </div>
     <div class="form-group col-md-6">
       <p class="txtLccu"> <b>LCCU - </b> #number# <b> ID - </b> #Id#</p>
@@ -55,14 +166,17 @@
     <div class="form-group col-md-6">
       <label for="inputNaam">Naam <span class="verplicht"> * </span></label>
       <input type="text" name="txtNaam" class="form-control" id="inputNaam" placeholder="Geef de naam van de eigenaar van het toestel...">
+      <span class="error"> <?php echo $naamErr;?></span>
     </div>
     <div class="form-group col-md-6">
       <label for="inputVoornaam">Voornaam <span class="verplicht"> * </span></label>
       <input type="text" name="txtVoornaam" class="form-control" id="inputVoornaam" placeholder="Geef de voornaam van de eigenaar van het toestel...">
+      <span class="error"> <?php echo $voornaamErr;?></span>
     </div>
     <div class="form-group col-md-6">
       <label for="inputGeboortedatum">Geboortedatum <span class="verplicht"> * </span></label>
       <input type="date" name="txtGeboortedatum" class="form-control" id="inputGeboortedatum">
+      <span class="error"> <?php echo $geboorteErr;?></span>
     </div>
     <div class="form-group col-md-6">
       <label for="inputAdres">Adres + huisnummer</label>
@@ -74,7 +188,8 @@
     </div>
 <!-- Radio buttons -->
       <div class="form-group col-md-6">
-        <label>Hoedanigheid <span class="verplicht"> * </span></label>
+        <label>Hoedanigheid <span class="verplicht"> * </span></label><span class="error"> <?php echo $hoedanigheidErr;?></span>
+
         <div class="form-check">
           <input class="form-check-input" type="radio" name="radioHoedanigheid" id="gridRadios1" value="Slachtoffer">
           <label class="form-check-label" for="gridRadios1">
@@ -129,6 +244,7 @@
           <label class="form-check-label" for="gridRadios2">
             Prioritair
           </label>
+          <span class="error"> <?php echo $afhandelingErr;?></span>
         </div>
 </div>
 
@@ -139,6 +255,7 @@
           <label class="form-check-label" for="gridRadios1">
             Ja
           </label>
+          <span class="error"> <?php echo $toelatingErr;?></span>
         </div>
 </div>
 
@@ -146,6 +263,7 @@
     <div class="form-group col-md-6">
       <label for="inputMerk">Merk + model <span class="verplicht"> * </span></label>
       <input type="text" name="txtMerk" class="form-control" id="inputMerk" placeholder="Geef het merk van het toestel in... ">
+      <span class="error"> <?php echo $merkErr;?></span>
     </div>
     <div class="form-group col-md-6">
       <label for="inputSerienummer">Serienummer/IMEInummer</label>
@@ -277,6 +395,8 @@
       Andere...
     </label>
 <input type="text" id="name3" name="txtAndere" />
+<span class="error"> <?php echo $zoekErr;?></span>
+
         </div>
 </div>
 
@@ -289,9 +409,16 @@
 
 <!------ BACKEND --->
 <?php
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+
 if(isset($_POST["btnVerzend"])){
-    echo "<script> document.querySelector('.container').style.display = 'none';</script>";
-    echo "Team: ".$_POST["txtTeam"]."<br>".
+    /*echo "Team: ".$_POST["txtTeam"]."<br>".
         "Dossierbeheerder: ".$_POST["txtDossierbeheerder"]."<br>".
         "PV Nummer: ".$_POST["txtPv"]."<br>".
         "Misdrijf: ".$_POST["txtMisdrijf"]."<br>".
@@ -319,6 +446,19 @@ if(isset($_POST["btnVerzend"])){
             // query to delete where item = $item
           }
         echo "<br>";
+*/
+
+
+        $sqlMateriaal = "INSERT INTO materiaal (Model, Serienummer, Toegangscode, SINN, ExtraInfo) VALUES ('$merk', '$serienummer', '$toegangscode', '$sinn', '$info')";
+        $result = $conn->query($sqlMateriaal);
+        if($result){
+          echo "OK";
+        }
+        else{
+          echo "Fout: ".$conn->connect_error;
+        }
+
+
 
 
 }
