@@ -154,7 +154,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="form-group col-md-6">
     <label for="inputDossiernaam">Dossiernaam <span class="verplicht"> * </span></label>
     <input type="text" class="form-control" name="txtDossiernaam" id="inputDossiernaam" placeholder="Dossiernaam (GES) of naam hoofdverdachte">
-    <span class="error"> <?php echo $dossiernaam;?></span>
+    <span class="error"> <?php echo $dossierErr;?></span>
     </div>
     <div class="form-group col-md-6">
       <p class="txtLccu"> <b>LCCU - </b> #number# <b> ID - </b> #Id#</p>
@@ -395,6 +395,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       Andere...
     </label>
 <input type="text" id="name3" name="txtAndere" />
+<br>
 <span class="error"> <?php echo $zoekErr;?></span>
 
         </div>
@@ -450,13 +451,63 @@ if(isset($_POST["btnVerzend"])){
 
 
         $sqlMateriaal = "INSERT INTO materiaal (Model, Serienummer, Toegangscode, SINN, ExtraInfo) VALUES ('$merk', '$serienummer', '$toegangscode', '$sinn', '$info')";
-        $result = $conn->query($sqlMateriaal);
-        if($result){
-          echo "OK";
+        if(mysqli_query($conn, $sqlMateriaal)){
+          echo "records materiaal inserted";
         }
         else{
-          echo "Fout: ".$conn->connect_error;
+          echo mysqli_error($conn);
         }
+
+        //getting hoedanigheidid and materiaalid
+        $sqlhoedanigheid = "SELECT Id FROM hoedanigheid WHERE Hoedanigheid = '$hoedanigheid'";
+        $result = $conn->query($sqlhoedanigheid);
+        while($row = $result->fetch_assoc()){
+          $hoedanigheidID = $row["Id"];
+        }
+
+
+        $sqlMateriaalid = "SELECT Id FROM materiaal WHERE Serienummer = '$serienummer'";
+        $result = $conn->query($sqlMateriaalid);
+        while($row = $result->fetch_assoc()){
+          $materiaalid = $row["Id"];
+        }
+        //////////
+       
+        $sqlEigenaar = "INSERT INTO eigenaar (Naam, Voornaam, Geboortedatum, Adres, Gemeente, HoedanigheidId, MateriaalId) VALUES ('$naam', '$voornaam','$geboortedatum', '$adres', '$gemeente', '$hoedanigheidID', '$materiaalid')";
+        $result = $conn->query($sqlEigenaar);
+        if($result){
+          echo "<br>records eigenaar inserted";
+        }
+        else{
+          echo "error eigenaar table".$conn->error;
+        }
+
+
+
+        //getting eigenaarID and afhandelingID
+        $sqlEigenaarId = "SELECT Id FROM eigenaar WHERE Naam = '$naam'";
+        $result = $conn->query($sqlEigenaarId);
+        while($row = $result->fetch_assoc()){
+          $eigenaarid = $row["Id"];
+        }
+
+        $sqlAfhandeling = "SELECT Id FROM afhandeling WHERE Afhandeling = '$afhandeling'";
+        $result = $conn->query($sqlAfhandeling);
+        while($row = $result->fetch_assoc()){
+          $afhandelingid = $row["Id"];
+        }
+        ///////////////////
+
+        $sqlAanvraag = "INSERT INTO aanvraag (Team, Dossierbeheerder, Pv, Misdrijf, NaamOr, Inbeslagname, Dossiernaam, EigenaarId, AfhandelingId) VALUES ('$team', '$dossierbeheerder', '$pv', '$misdrijf', '$or', '$datum', '$dossiernaam', '$eigenaarid', '$afhandelingid')";
+        $result = $conn->query($sqlAanvraag);
+        if($result){
+          echo "<br>records aanvraag inserted";
+        }
+        else{
+          echo "error aanvraag table".$conn->error;
+        }
+
+
 
 
 
