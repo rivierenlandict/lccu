@@ -101,9 +101,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $zoekErr = "Tenminste 1 zoekelement is verplicht";
   }else{
     $teller = 0;
+    $itemcheck = "";
     foreach($_POST['checkZoek'] as $item){
-      $zoekelement.$teller = $item;
-      $teller++;
+      $itemcheck .= $item.", ";
     }
   }
 
@@ -394,7 +394,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <input class="form-check-input" type="checkbox" name="checkZoek[]" id="check4" value="andere" onclick="if(this.checked){ document.getElementById('name3').focus();}" />
       Andere...
     </label>
-<input type="text" id="name3" name="txtAndere" />
+<input type="checkZoek[]" id="name3" name="txtAndere" />
 <br>
 <span class="error"> <?php echo $zoekErr;?></span>
 
@@ -419,6 +419,8 @@ function test_input($data) {
 
 
 if(isset($_POST["btnVerzend"])){
+
+  $zoekelementen = $_POST["checkZoek"];
     /*echo "Team: ".$_POST["txtTeam"]."<br>".
         "Dossierbeheerder: ".$_POST["txtDossierbeheerder"]."<br>".
         "PV Nummer: ".$_POST["txtPv"]."<br>".
@@ -498,7 +500,7 @@ if(isset($_POST["btnVerzend"])){
         }
         ///////////////////
 
-        $sqlAanvraag = "INSERT INTO aanvraag (Team, Dossierbeheerder, Pv, Misdrijf, NaamOr, Inbeslagname, Dossiernaam, EigenaarId, AfhandelingId) VALUES ('$team', '$dossierbeheerder', '$pv', '$misdrijf', '$or', '$datum', '$dossiernaam', '$eigenaarid', '$afhandelingid')";
+        $sqlAanvraag = "INSERT INTO aanvraag (Team, Dossierbeheerder, Pv, Misdrijf, NaamOr, Inbeslagname, Dossiernaam, EigenaarId, AfhandelingId, Zoekelementen) VALUES ('$team', '$dossierbeheerder', '$pv', '$misdrijf', '$or', '$datum', '$dossiernaam', '$eigenaarid', '$afhandelingid', '$itemcheck')";
         $result = $conn->query($sqlAanvraag);
         if($result){
           echo "<br>records aanvraag inserted";

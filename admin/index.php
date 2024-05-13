@@ -29,7 +29,7 @@ include("../connect.php");
 <div class="container">
 <h1> Aanvragen </h1>
 <?php
-$sql = "SELECT aanvraag.Team, aanvraag.Dossierbeheerder, aanvraag.Pv, aanvraag.Misdrijf, aanvraag.NaamOr, aanvraag.Inbeslagname, aanvraag.Dossiernaam, eigenaar.Naam, eigenaar.Voornaam, afhandeling.Afhandeling FROM aanvraag INNER JOIN eigenaar ON aanvraag.EigenaarId = eigenaar.Id INNER JOIN afhandeling ON aanvraag.AfhandelingId = afhandeling.Id";
+$sql = "SELECT aanvraag.Team, aanvraag.Dossierbeheerder, aanvraag.Pv, aanvraag.Misdrijf, aanvraag.NaamOr, aanvraag.Inbeslagname, aanvraag.Dossiernaam, aanvraag.Zoekelementen, eigenaar.Naam, eigenaar.Voornaam, afhandeling.Afhandeling FROM aanvraag INNER JOIN eigenaar ON aanvraag.EigenaarId = eigenaar.Id INNER JOIN afhandeling ON aanvraag.AfhandelingId = afhandeling.Id";
 $result = $conn->query($sql);
 if($result){
     echo "<script> console.log('Table is loaded'); </script>";
@@ -38,11 +38,11 @@ else{
     echo "<script> console.log('Something went wrong'); </script>";
 }
 echo "<table class='table'>";
-echo "<tr><th> Team </th><th> Dossierbeheerder </th><th> PV </th><th> Misdrijf </th><th> OR/PDK </th><th> Datum inbeslagname </th><th> Dossiernaam </th><th> Eigenaar </th><th> Afhandeling </th></tr>";
+echo "<tr><th> Team </th><th> Dossierbeheerder </th><th> PV </th><th> Misdrijf </th><th> OR/PDK </th><th> Datum inbeslagname </th><th> Dossiernaam </th><th> Eigenaar </th><th> Afhandeling </th><th> Zoekelementen </th></tr>";
 while($row = $result->fetch_assoc()){
     echo "<tr><td>".$row["Team"]."</td><td>".$row["Dossierbeheerder"]."</td><td>".$row["Pv"]."</td><td>".$row["Misdrijf"]."</td><td>".$row["NaamOr"]."</td><td>".$row["Inbeslagname"]."</td><td>".$row["Dossiernaam"]."</td><td><a href='#'>".$row["Naam"]."</a></td>
     <td>";
-    if($row["Afhandeling"] == "Gewone Afhandeling"){
+    if($row["Afhandeling"] == "Gewone afhandeling"){
         echo "<span style='color:green;'>".$row["Afhandeling"]."</span>";
     }
     else if($row["Afhandeling"] == "Dringend"){
@@ -51,7 +51,7 @@ while($row = $result->fetch_assoc()){
     else if($row["Afhandeling"] == "Prioritair"){
         echo "<span style='color:red;'>".$row["Afhandeling"]."</span>";
     }
-    echo "</td></tr>";
+    echo "</td><td>".$row["Zoekelementen"]."</td></tr>";
 
 }
 echo "</table>";
