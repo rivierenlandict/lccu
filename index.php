@@ -15,91 +15,92 @@ $tellermateriaal = 0;
 <body>
 
 <?php
-  $pv = test_input($_POST["txtPv"]);
-  $misdrijf = test_input($_POST["txtMisdrijf"]);
+  $pv = $_POST["txtPv"];
+  $misdrijf = $_POST["txtMisdrijf"];
 
-  $adres = test_input($_POST["txtAdres"]);
-  $gemeente = test_input($_POST["txtGemeente"]);
+  $adres = $_POST["txtAdres"];
+  $gemeente = $_POST["txtGemeente"];
 
-  $serienummer = test_input($_POST["txtSerienummer"]);
+  /*$serienummer = test_input($_POST["txtSerienummer"]);
   $toegangscode = test_input($_POST["txtToegangscode"]);
   $sinn = test_input($_POST["txtSinn"]);
-  $info = test_input($_POST["txtExtrainfo"]);
+  $info = test_input($_POST["txtExtrainfo"]);*/
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   if(empty($_POST["txtTeam"])){
     $teamErr = "Team is verplicht";
   }else{
-    $team = test_input($_POST["txtTeam"]);
+    $team = $_POST["txtTeam"];
   }
   
   if(empty($_POST["txtDossierbeheerder"])){
     $dossierErr = "Dossierbeheerder is verplicht";
   }else{
-    $dossierbeheerder = test_input($_POST["txtDossierbeheerder"]);
+    $dossierbeheerder = $_POST["txtDossierbeheerder"];
   }
 
   if(empty($_POST["txtOr"])){
     $orErr = "OR/PDK is verplicht";
   }else{
-    $or = test_input($_POST["txtOr"]);
+    $or = $_POST["txtOr"];
   }
 
   if(empty($_POST["txtDatum"])){
     $datumErr = "Datum is verplicht";
   }else{
-    $datum = test_input($_POST["txtDatum"]);
+    $datum = $_POST["txtDatum"];
   }
 
   if(empty($_POST["txtDossiernaam"])){
     $dossiernaamErr = "Dossiernaam is verplicht";
   }else{
-    $dossiernaam = test_input($_POST["txtDossiernaam"]);
+    $dossiernaam = $_POST["txtDossiernaam"];
   }
 
   if(empty($_POST["txtNaam"])){
     $naamErr = "Naam is verplicht";
   }else{
-    $naam = test_input($_POST["txtNaam"]);
+    $naam = $_POST["txtNaam"];
   }
 
   if(empty($_POST["txtVoornaam"])){
     $voornaamErr = "Voornaam is verplicht";
   }else{
-    $voornaam = test_input($_POST["txtVoornaam"]);
+    $voornaam = $_POST["txtVoornaam"];
   }
 
   if(empty($_POST["txtGeboortedatum"])){
     $geboorteErr = "Geboortedatum is verplicht";
   }else{
-    $geboortedatum = test_input($_POST["txtGeboortedatum"]);
+    $geboortedatum = $_POST["txtGeboortedatum"];
   }
 
   if(empty($_POST["radioHoedanigheid"])){
     $hoedanigheidErr = "Hoedanigheid is verplicht";
   }else{
-    $hoedanigheid = test_input($_POST["radioHoedanigheid"]);
+    $hoedanigheid = $_POST["radioHoedanigheid"];
   }
 
   if(empty($_POST["radioAfhandeling"])){
     $afhandelingErr = "Afhandeling is verplicht";
   }else{
-    $afhandeling = test_input($_POST["radioAfhandeling"]);
+    $afhandeling = $_POST["radioAfhandeling"];
   }
 
   if(empty($_POST["radioToelating"])){
     $toelatingErr = "Toelating is verplicht";
   }else{
-    $toelating = test_input($_POST["radioToelating"]);
+    $toelating = $_POST["radioToelating"];
   }
 
-  if(empty($_POST["txtMerk"])){
+  
+  /*if(empty($_POST["txtMerk0"])){
     $merkErr = "Merk en model is verplicht";
   }else{
-    $merk = test_input($_POST["txtMerk"]);
-  }
+    $merk = test_input($_POST["txtMerk0"]);
+  }*/
 
 
-  if(empty($_POST["checkZoek"])){
+  /*if(empty($_POST["checkZoek"])){
     $zoekErr = "Tenminste 1 zoekelement is verplicht";
   }else{
     $teller = 0;
@@ -112,8 +113,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 }
-
-
+*/
+}
 ?>
     <div class="container">
         <header> 
@@ -264,25 +265,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputMerk">Merk + model <span class="verplicht"> * </span></label>
-      <input type="text" name=<?php echo "txtMerk".$tellermateriaal?> class="form-control" id="inputMerk" placeholder="Geef het merk van het toestel in... ">
+      <input type="text" name="txtMerk[]" class="form-control" id="inputMerk" placeholder="Geef het merk van het toestel in... ">
       <span class="error"> <?php echo $merkErr;?></span>
     </div>
     <div class="form-group col-md-6">
       <label for="inputSerienummer">Serienummer/IMEInummer</label>
-      <input type="text" name=<?php echo "txtSerienummer".$tellermateriaal?> class="form-control" id="inputSerienummer" placeholder="Geef het serienummer van het toestel in...">
+      <input type="text" name="txtSerienummer[]" class="form-control" id="inputSerienummer" placeholder="Geef het serienummer van het toestel in...">
     </div>
     <div class="form-group col-md-6">
       <label for="inputToegangscode">Toegangscode</label>
-      <input type="text" name=<?php echo "txtToegangscode".$tellermateriaal?> class="form-control" id="inputToegangscode" placeholder="Geef de toegangscode in van het toestel...">
+      <input type="text" name="txtToegangscode[]" class="form-control" id="inputToegangscode" placeholder="Geef de toegangscode in van het toestel...">
     </div>
         <div class="form-group col-md-6">
       <label for="inputToegangscode">SINN (Pacos)</label>
-      <input type="text" name=<?php echo "txtSinn".$tellermateriaal?> class="form-control" id="inputToegangscode" placeholder="Geef de SINN nummer in...">
+      <input type="text" name="txtSinn[]" class="form-control" id="inputToegangscode" placeholder="Geef de SINN nummer in...">
     </div>
     </div>
     <div class="form-group">
     <label for="textInfo" class="form-label">Extra informatie</label>
-  <textarea class="form-control" name=<?php echo "txtExtrainfo".$tellermateriaal?> id="textInfo" rows="3" maxlength="500"></textarea>
+  <textarea class="form-control" name="txtExtrainfo[]" id="textInfo" rows="3" maxlength="500"></textarea>
     </div>
 
       <button type="button" id="btnAdd" class="btn btn-primary">+</button> Materiaal toevoegen
@@ -293,7 +294,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $tellermateriaal = 1;
       $("#btnAdd").click(function () {
         //<div class='form-group col-md-6'><label for='inputSerienummer'>Serienummer/IMEInummer</label><input type='text' name='txtSerienummer' class='form-control' id='inputSerienummer' placeholder='Geef het serienummer van het toestel in...'></div><div class='form-group col-md-6'><label for='inputToegangscode'>Toegangscode</label><input type='text' name='txtToegangscode' class='form-control' id='inputToegangscode' placeholder='Geef de toegangscode in van het toestel...'></div><div class='form-group col-md-6'><label for='inputToegangscode'>SINN (Pacos)</label><input type='text' name='txtSinn' class='form-control' id='inputToegangscode' placeholder='Geef de SINN nummer in...'></div></div><div class='form-group'><label for='textInfo' class='form-label'>Extra informatie</label><textarea class='form-control' name='txtExtrainfo' id='textInfo' rows='3' maxlength='500'></textarea></div>
-  $("#extra").append("<div class='form-row'><div class='form-group col-md-6'><label for='inputMerk'>Merk + model <span class='verplicht'> * </span></label><input type='text' name='txtMerk"+$tellermateriaal+"' class='form-control' id='inputMerk' placeholder='Geef het merk van het toestel in... '><span class='error'> <?php echo $merkErr;?></span></div><div class='form-group col-md-6'><label for='inputSerienummer'>Serienummer/IMEInummer</label><input type='text' name='txtSerienummer"+$tellermateriaal+"' class='form-control' id='inputSerienummer' placeholder='Geef het serienummer van het toestel in...'></div><div class='form-group col-md-6'><label for='inputToegangscode'>Toegangscode</label><input type='text' name='txtToegangscode"+$tellermateriaal+"' class='form-control' id='inputToegangscode' placeholder='Geef de toegangscode in van het toestel...'></div><div class='form-group col-md-6'><label for='inputToegangscode'>SINN (Pacos)</label><input type='text' name='txtSinn"+$tellermateriaal+"' class='form-control' id='inputToegangscode' placeholder='Geef de SINN nummer in...'></div></div><div class='form-group'><label for='textInfo' class='form-label'>Extra informatie</label><textarea class='form-control' name='txtExtrainfo"+$tellermateriaal+"' id='textInfo' rows='3' maxlength='500'></textarea></div>");
+  $("#extra").append("<div class='form-row'><div class='form-group col-md-6'><label for='inputMerk'>Merk + model <span class='verplicht'> * </span></label><input type='text' name='txtMerk[]' class='form-control' id='inputMerk' placeholder='Geef het merk van het toestel in... '><span class='error'> <?php echo $merkErr;?></span></div><div class='form-group col-md-6'><label for='inputSerienummer'>Serienummer/IMEInummer</label><input type='text' name='txtSerienummer[]' class='form-control' id='inputSerienummer' placeholder='Geef het serienummer van het toestel in...'></div><div class='form-group col-md-6'><label for='inputToegangscode'>Toegangscode</label><input type='text' name='txtToegangscode[]' class='form-control' id='inputToegangscode' placeholder='Geef de toegangscode in van het toestel...'></div><div class='form-group col-md-6'><label for='inputToegangscode'>SINN (Pacos)</label><input type='text' name='txtSinn[]' class='form-control' id='inputToegangscode' placeholder='Geef de SINN nummer in...'></div></div><div class='form-group'><label for='textInfo' class='form-label'>Extra informatie</label><textarea class='form-control' name='txtExtrainfo[]' id='textInfo' rows='3' maxlength='500'></textarea></div>");
 $tellermateriaal++;
 });
     </script>
@@ -338,12 +339,12 @@ $tellermateriaal++;
 
 <!------ BACKEND --->
 <?php
-function test_input($data) {
+/*function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
-}
+}*/
 
 
 if(isset($_POST["btnVerzend"])){
@@ -378,32 +379,19 @@ if(isset($_POST["btnVerzend"])){
           }
         echo "<br>";
 */
+          
 
+ 
+       //getting hoedanigheidid and materiaalid
+       $sqlhoedanigheid = "SELECT Id FROM hoedanigheid WHERE Hoedanigheid = '$hoedanigheid'";
+       $result = $conn->query($sqlhoedanigheid);
+       while($row = $result->fetch_assoc()){
+         $hoedanigheidID = $row["Id"];
+       }
+       //////////
 
-        $sqlMateriaal = "INSERT INTO materiaal (Model, Serienummer, Toegangscode, SINN, ExtraInfo) VALUES ('$merk', '$serienummer', '$toegangscode', '$sinn', '$info')";
-        if(mysqli_query($conn, $sqlMateriaal)){
-          echo "records materiaal inserted";
-        }
-        else{
-          echo mysqli_error($conn);
-        }
-
-        //getting hoedanigheidid and materiaalid
-        $sqlhoedanigheid = "SELECT Id FROM hoedanigheid WHERE Hoedanigheid = '$hoedanigheid'";
-        $result = $conn->query($sqlhoedanigheid);
-        while($row = $result->fetch_assoc()){
-          $hoedanigheidID = $row["Id"];
-        }
-
-
-        $sqlMateriaalid = "SELECT Id FROM materiaal WHERE Serienummer = '$serienummer'";
-        $result = $conn->query($sqlMateriaalid);
-        while($row = $result->fetch_assoc()){
-          $materiaalid = $row["Id"];
-        }
-        //////////
        
-        $sqlEigenaar = "INSERT INTO eigenaar (Naam, Voornaam, Geboortedatum, Adres, Gemeente, HoedanigheidId, MateriaalId) VALUES ('$naam', '$voornaam','$geboortedatum', '$adres', '$gemeente', '$hoedanigheidID', '$materiaalid')";
+        $sqlEigenaar = "INSERT INTO eigenaar (Naam, Voornaam, Geboortedatum, Adres, Gemeente, HoedanigheidId) VALUES ('$naam', '$voornaam','$geboortedatum', '$adres', '$gemeente', '$hoedanigheidID')";
         $result = $conn->query($sqlEigenaar);
         if($result){
           echo "<br>records eigenaar inserted";
@@ -413,6 +401,34 @@ if(isset($_POST["btnVerzend"])){
         }
 
 
+        //getting eigenaarID
+        $sql = "SELECT Id FROM eigenaar WHERE Naam = '$naam' AND Voornaam = '$voornaam'";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()){
+          $eigenaarnieuweid = $row["Id"];
+        }
+        //////////////////////
+
+         
+        $count = count($_POST["txtMerk"]);
+        for($i=0;$i<$count;$i++){
+          $merk = $_POST["txtMerk"][$i];
+          $serienummer = $_POST["txtSerienummer"][$i];
+          $toegangscode = $_POST["txtToegangscode"][$i];
+          $sinn = $_POST["txtSinn"][$i];
+          $info = $_POST["txtExtrainfo"][$i];
+          $sqlMateriaal = "INSERT INTO materiaal (Model, Serienummer, Toegangscode, SINN, ExtraInfo, EigenaarId) VALUES ('$merk', '$serienummer', '$toegangscode', '$sinn', '$info','$eigenaarnieuweid')";
+          if(mysqli_query($conn, $sqlMateriaal)){
+            echo "<br>".($i+1)." records materiaal inserted";
+          }
+          else{
+            echo mysqli_error($conn);
+          }
+
+
+        }
+        
+  
 
         //getting eigenaarID and afhandelingID
         $sqlEigenaarId = "SELECT Id FROM eigenaar WHERE Naam = '$naam'";
