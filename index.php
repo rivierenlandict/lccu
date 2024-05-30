@@ -100,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   }*/
 
 
-  /*if(empty($_POST["checkZoek"])){
+  if(empty($_POST["checkZoek"])){
     $zoekErr = "Tenminste 1 zoekelement is verplicht";
   }else{
     $teller = 0;
@@ -112,8 +112,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
+
+
 }
-*/
+
+
+$sql = "SELECT Id FROM aanvraag ORDER BY Id DESC LIMIT 1";
+$result = $conn->query($sql);
+while($row = $result->fetch_assoc()){
+  $laatsteId = $row["Id"];
 }
 ?>
     <div class="container">
@@ -160,7 +167,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <span class="error"> <?php echo $dossierErr;?></span>
     </div>
     <div class="form-group col-md-6">
-      <p class="txtLccu"> <b>LCCU - </b> #number# <b> ID - </b> #Id#</p>
+      <p class="txtLccu"> <b> ID - </b> <?php echo $laatsteId+1; ?></p>
     </div>
   </div>
 <!----------------------------------------------------------------------------->
@@ -394,10 +401,14 @@ if(isset($_POST["btnVerzend"])){
         $sqlEigenaar = "INSERT INTO eigenaar (Naam, Voornaam, Geboortedatum, Adres, Gemeente, HoedanigheidId) VALUES ('$naam', '$voornaam','$geboortedatum', '$adres', '$gemeente', '$hoedanigheidID')";
         $result = $conn->query($sqlEigenaar);
         if($result){
-          echo "<br>records eigenaar inserted";
+          echo "<div class='alert alert-success' role='alert'>
+            Eigenaar succesvol toegevoegd!
+        </div>";
         }
         else{
-          echo "error eigenaar table".$conn->error;
+          echo "<div class='alert alert-danger' role='alert'>
+          Error met toevoegen van eigenaar
+        </div>";
         }
 
 
@@ -419,10 +430,14 @@ if(isset($_POST["btnVerzend"])){
           $info = $_POST["txtExtrainfo"][$i];
           $sqlMateriaal = "INSERT INTO materiaal (Model, Serienummer, Toegangscode, SINN, ExtraInfo, EigenaarId) VALUES ('$merk', '$serienummer', '$toegangscode', '$sinn', '$info','$eigenaarnieuweid')";
           if(mysqli_query($conn, $sqlMateriaal)){
-            echo "<br>".($i+1)." records materiaal inserted";
+            echo "<div class='alert alert-success' role='alert'>
+            ".($i+1)." rij(en) met materiaal toegevoegd!
+        </div>";
           }
           else{
-            echo mysqli_error($conn);
+            echo "<div class='alert alert-danger' role='alert'>
+          Error met toevoegen van materiaal
+        </div>";
           }
 
 
@@ -447,10 +462,14 @@ if(isset($_POST["btnVerzend"])){
         $sqlAanvraag = "INSERT INTO aanvraag (Team, Dossierbeheerder, Pv, Misdrijf, NaamOr, Inbeslagname, Dossiernaam, EigenaarId, AfhandelingId, Zoekelementen) VALUES ('$team', '$dossierbeheerder', '$pv', '$misdrijf', '$or', '$datum', '$dossiernaam', '$eigenaarid', '$afhandelingid', '$itemcheck')";
         $result = $conn->query($sqlAanvraag);
         if($result){
-          echo "<br>records aanvraag inserted";
+          echo "<div class='alert alert-success' role='alert'>
+          Aanvraag succesvol aangemaakt!
+      </div>";
         }
         else{
-          echo "error aanvraag table".$conn->error;
+          echo "<div class='alert alert-danger' role='alert'>
+          Error met aanmaken van aanvraag
+        </div>";
         }
 
 
@@ -466,7 +485,12 @@ if(isset($_POST["btnVerzend"])){
 
 
 
+<script>
 
+  setTimeout(function(){
+    $('.alert').hide();
+  }, 5000);
+</script>
 
 
 

@@ -54,11 +54,11 @@ while($row = $result->fetch_assoc()){
 }
 echo "</table>";
 ?>
-<h2> Materiaal </h2>
+<h1> Materiaal </h1>
 <?php
 echo "<table class='table'>";
 echo "<tr><th> Model </th><th> Serienummer </th><th> Toegangscode </th><th> SINN </th><th> Extra info </th></tr>";
-$sql = "SELECT * FROM materiaal WHERE Id = '$materiaalid'";
+$sql = "SELECT * FROM materiaal WHERE eigenaarId = '$eigenaarid'";
 $result = $conn->query($sql);
 while($row = $result->fetch_assoc()){
     echo "<tr><td>".$row["Model"]."</td><td>".$row["Serienummer"]."</td><td>".$row["Toegangscode"]."</td><td>".$row["SINN"]."</td><td>".$row["ExtraInfo"]."</td></tr>";
